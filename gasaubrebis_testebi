@@ -1,0 +1,123 @@
+
+// ამოცანა 1
+
+func isPalindrome(txt : String) -> Bool {
+    
+    let TempStr : String = String(txt.reversed())
+    
+    if(TempStr == txt){
+        return true
+    }
+    else  {
+        return false
+    }
+}
+
+
+//ამოცანა 2
+
+func minSplit(amount : Int) -> Int {
+    
+    var Answer : Int = 0
+    var Amt : Int = amount
+    
+ 
+    Answer += (Amt / 50)
+    Amt %= 50
+    
+    Answer += (Amt / 20)
+    Amt %= 20
+    
+    Answer += (Amt / 10)
+    Amt %= 10
+    
+    Answer += (Amt / 5)
+    Amt %= 5
+    
+    Answer += Amt
+    
+    return Answer
+}
+
+
+//ამოცანა 3
+
+func notContains(arr : [Int]) -> Int {
+    
+    var someSet = Set<Int>()
+    
+    for i in arr {
+        if (i > 0) {
+            someSet.insert(i)
+        }
+    }
+    
+    var lastArr = [0]
+    
+    for i in someSet {
+        
+        lastArr.append(i)
+        
+    }
+    
+    lastArr.sort()
+    
+    for i in 1...(lastArr.count - 1) {
+        
+        if(lastArr[i] != i){
+            return i
+        }
+    }
+    
+    return lastArr[lastArr.count - 1] + 1
+}
+
+
+//ამოცანა 4
+
+func isProperly(sequence : String) -> Bool {
+    
+    var arr = [Character]()
+    
+    for i in sequence {
+        
+        if(i == "("){
+            arr.append("(")
+        }
+        else {
+            if(arr.isEmpty) {
+                return false
+            }
+            else {
+                arr.remove(at: (arr.count - 1))
+            }
+        }
+    }
+    
+    if(arr.isEmpty){
+        return true
+    } else {
+        return false
+    }
+}
+
+
+
+//ამოცანა 5
+
+func countVariants(stairsCount : Int) -> Int{
+    
+    var arr = Array(repeating: 0, count: stairsCount + 5)
+    
+    arr[1] = 1
+    arr[2] = 1
+    
+    for i in 1...(stairsCount - 1){
+        arr[i + 1] += arr[i]
+        arr[i + 2] += arr[i]
+    }
+   
+    
+    return arr[stairsCount]
+}
+
